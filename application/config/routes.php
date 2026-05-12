@@ -58,3 +58,4 @@ $route['services'] = 'service';
 $route['about'] = 'about';
 $route['research'] = 'research';
 $route['contact'] = 'contact';
+$route['sitemap.xml'] = 'sitemap';

@@ -1,18 +1,71 @@
 
     <meta charset="utf-8">
-    <title>Sheba International, Inc.</title>
-    <!-- Meta Charset & Viewport -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- SEO Meta Description -->
-<meta name="description" content="Sheba International, Inc., established in 1996 in Huntington, West Virginia, U.S.A., is a global consulting firm providing expert services in healthcare, business, research, grant writing and evaluation, EHR consulting and training, workforce development, IT and web solutions. Trusted by industries worldwide to deliver innovative solutions.">
+    <!-- Dynamic SEO Meta Tags -->
+    <?php
+    $current_uri = uri_string();
+    $page_title = 'Sheba International, Inc.';
+    $page_description = 'Sheba International, Inc., established in 1996 in Huntington, West Virginia, U.S.A., is a global consulting firm providing expert services in healthcare, business, research, grant writing and evaluation, EHR consulting and training, workforce development, IT and web solutions. Trusted by industries worldwide to deliver innovative solutions.';
+    $page_keywords = 'Sheba International, business consulting, healthcare consulting, research services, grant writing, grant evaluation, EHR consulting, workforce development, IT solutions, web solutions, professional consultancy, global consulting firm, training services, business strategy, technology solutions, expert consulting';
 
-<!-- SEO Meta Keywords -->
-<meta name="keywords" content="Sheba International, business consulting, healthcare consulting, research services, grant writing, grant evaluation, EHR consulting, workforce development, IT solutions, web solutions, professional consultancy, global consulting firm, training services, business strategy, technology solutions, expert consulting">
+    // Dynamic titles and descriptions based on page
+    if (strpos($current_uri, 'services') !== false) {
+        $page_title = 'Professional Consulting Services | Sheba International, Inc.';
+        $page_description = 'Expert consulting services in healthcare, business, research, grant writing, EHR implementation, workforce development, and IT solutions. Global consulting firm with 25+ years of experience.';
+    } elseif (strpos($current_uri, 'about') !== false) {
+        $page_title = 'About Us - Global Consulting Firm | Sheba International, Inc.';
+        $page_description = 'Learn about Sheba International, Inc., a trusted global consulting firm established in 1996, providing innovative solutions in healthcare, business, and technology sectors worldwide.';
+    } elseif (strpos($current_uri, 'research') !== false) {
+        $page_title = 'Research & Grant Writing Services | Sheba International, Inc.';
+        $page_description = 'Professional research services and grant writing expertise. We help organizations secure funding through comprehensive research, evaluation, and grant application support.';
+    } elseif (strpos($current_uri, 'contact') !== false) {
+        $page_title = 'Contact Us | Sheba International, Inc.';
+        $page_description = 'Get in touch with Sheba International, Inc. for expert consulting services. Located in Huntington, West Virginia, serving clients worldwide.';
+    }
+    ?>
 
-<!-- Canonical URL -->
-<link rel="canonical" href="<?php echo current_url(); ?>">
+    <title><?php echo htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8'); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($page_description, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="keywords" content="<?php echo htmlspecialchars($page_keywords, ENT_QUOTES, 'UTF-8'); ?>">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="author" content="Sheba International, Inc.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<?php echo htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars($page_description, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:url" content="<?php echo htmlspecialchars(current_url(), ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:site_name" content="Sheba International, Inc.">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars($page_description, ENT_QUOTES, 'UTF-8'); ?>">
+
+    <!-- Performance Optimization -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="<?= base_url('assets/frontend/css/bootstrap.min.css'); ?>" as="style">
+    <link rel="preload" href="<?= base_url('assets/frontend/css/style.css'); ?>" as="style">
+
+    <!-- Canonical URL -->
+    <?php
+    $canonical_url = current_url();
+    if (strpos($canonical_url, '?') !== false) {
+        $canonical_url = strtok($canonical_url, '?');
+    }
+    ?>
+    <link rel="canonical" href="<?php echo htmlspecialchars($canonical_url, ENT_QUOTES, 'UTF-8'); ?>">
 
     <!-- Favicon -->
 <link rel="icon" type="image/png"

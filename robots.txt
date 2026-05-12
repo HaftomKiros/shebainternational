@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Block admin and system directories
+Disallow: /admin/
+Disallow: /application/
+Disallow: /system/
+Disallow: /install/
+Disallow: /my-assets/
+Disallow: /vendor/
+
+# Allow important directories
+Allow: /assets/
+Allow: /uploads/
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
