@@ -23,9 +23,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$root=(isset($_SERVER["HTTPS"]) ? "https://" : "http://").$_SERVER["HTTP_HOST"];
-$root.= str_replace(basename($_SERVER["SCRIPT_NAME"]), "", $_SERVER["SCRIPT_NAME"]);
-$config["base_url"] = $root; 
+// Force new domain for all instances
+$new_domain = "https://www.shebainternational.com/";
+
+// Check if old domain is being accessed (handled by .htaccess, but failsafe here)
+if (strpos($_SERVER["HTTP_HOST"], 'gheraltaecotrekking.com') !== false) {
+    $config["base_url"] = $new_domain;
+} else {
+    // Always use new domain explicitly to prevent old domain references
+    $config["base_url"] = $new_domain;
+} 
 
 /*
 |--------------------------------------------------------------------------
@@ -102,7 +109,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

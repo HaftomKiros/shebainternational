@@ -1,5 +1,27 @@
 RewriteEngine On
-RewriteCond $1 !^(index\.php|images|robots\.txt)
+
+# ============================================================
+# DOMAIN MIGRATION: Redirect old domain to new domain
+# ============================================================
+
+# Redirect old domain to new domain with 301 (permanent)
+RewriteCond %{HTTP_HOST} ^(www\.)?gheraltaecotrekking\.com$ [NC]
+RewriteRule ^(.*)$ https://www.shebainternational.com/$1 [R=301,L]
+
+# Redirect HTTP to HTTPS on new domain
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^(www\.)?shebainternational\.com$ [NC]
+RewriteRule ^(.*)$ https://www.shebainternational.com/$1 [R=301,L]
+
+# Redirect non-www to www on new domain
+RewriteCond %{HTTP_HOST} ^shebainternational\.com$ [NC]
+RewriteRule ^(.*)$ https://www.shebainternational.com/$1 [R=301,L]
+
+# ============================================================
+# CODEIGNITER ROUTING
+# ============================================================
+
+RewriteCond $1 !^(index\.php|images|robots\.txt|sitemap\.xml)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]

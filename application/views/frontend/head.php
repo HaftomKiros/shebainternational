@@ -58,11 +58,19 @@
     <link rel="preload" href="<?= base_url('assets/frontend/css/bootstrap.min.css'); ?>" as="style">
     <link rel="preload" href="<?= base_url('assets/frontend/css/style.css'); ?>" as="style">
 
-    <!-- Canonical URL -->
+    <!-- Canonical URL - Always use new domain -->
     <?php
-    $canonical_url = current_url();
+    $request_uri = parse_url(current_url(), PHP_URL_PATH);
+    $canonical_url = "https://www.shebainternational.com" . $request_uri;
+    
+    // Remove query parameters
     if (strpos($canonical_url, '?') !== false) {
         $canonical_url = strtok($canonical_url, '?');
+    }
+    
+    // Ensure trailing slash for homepage only
+    if ($canonical_url === "https://www.shebainternational.com") {
+        $canonical_url .= "/";
     }
     ?>
     <link rel="canonical" href="<?php echo htmlspecialchars($canonical_url, ENT_QUOTES, 'UTF-8'); ?>">
