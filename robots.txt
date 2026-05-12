@@ -14,4 +14,4 @@ Allow: /assets/
 Allow: /uploads/
 
 # Sitemap
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://www.shebainternational.com/sitemap.xml
