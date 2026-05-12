@@ -39,7 +39,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="<?php echo htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8'); ?>">
     <meta property="og:description" content="<?php echo htmlspecialchars($page_description, ENT_QUOTES, 'UTF-8'); ?>">
-    <meta property="og:url" content="<?php echo htmlspecialchars(current_url(), ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:url" content="https://www.shebainternational.com<?php echo parse_url(current_url(), PHP_URL_PATH); ?>">
     <meta property="og:site_name" content="Sheba International, Inc.">
     <meta property="og:locale" content="en_US">
 
@@ -47,6 +47,35 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?php echo htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8'); ?>">
     <meta name="twitter:description" content="<?php echo htmlspecialchars($page_description, ENT_QUOTES, 'UTF-8'); ?>">
+
+    <!-- Organization Schema Markup for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Sheba International, Inc.",
+      "url": "https://www.shebainternational.com/",
+      "logo": "https://www.shebainternational.com/assets/images/logo.png",
+      "description": "Global consulting firm providing expert services in healthcare, business, research, grant writing and evaluation, EHR consulting and training, workforce development, IT and web solutions.",
+      "foundingDate": "1996",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Huntington",
+        "addressRegion": "West Virginia",
+        "postalCode": "",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Service",
+        "availableLanguage": ["en"]
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/sheba-international",
+        "https://www.facebook.com/shebainternational"
+      ]
+    }
+    </script>
 
     <!-- Performance Optimization -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -74,6 +103,10 @@
     }
     ?>
     <link rel="canonical" href="<?php echo htmlspecialchars($canonical_url, ENT_QUOTES, 'UTF-8'); ?>">
+
+    <!-- Hreflang Tags for Language Targeting -->
+    <link rel="alternate" hreflang="en" href="https://www.shebainternational.com<?php echo parse_url(current_url(), PHP_URL_PATH); ?>">
+    <link rel="alternate" hreflang="x-default" href="https://www.shebainternational.com<?php echo parse_url(current_url(), PHP_URL_PATH); ?>">
 
     <!-- Favicon -->
 <link rel="icon" type="image/png"

@@ -4,14 +4,13 @@ RewriteEngine On
 # DOMAIN MIGRATION: Redirect old domain to new domain
 # ============================================================
 
-# Redirect old domain to new domain with 301 (permanent)
+# Redirect old domain (http or https) to new domain https/www
 RewriteCond %{HTTP_HOST} ^(www\.)?gheraltaecotrekking\.com$ [NC]
 RewriteRule ^(.*)$ https://www.shebainternational.com/$1 [R=301,L]
 
-# Redirect HTTP to HTTPS on new domain
+# Redirect HTTP to HTTPS (prevents double redirects)
 RewriteCond %{HTTPS} off
-RewriteCond %{HTTP_HOST} ^(www\.)?shebainternational\.com$ [NC]
-RewriteRule ^(.*)$ https://www.shebainternational.com/$1 [R=301,L]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 # Redirect non-www to www on new domain
 RewriteCond %{HTTP_HOST} ^shebainternational\.com$ [NC]
@@ -73,5 +72,5 @@ AddType application/x-httpd-php .html
     Header always set X-Frame-Options DENY
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 </IfModule>
